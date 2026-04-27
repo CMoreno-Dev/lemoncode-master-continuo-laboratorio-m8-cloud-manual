@@ -1,0 +1,26 @@
+<div class="app-container">
+  <!-- Cabecera: mostrar cabecera pública si NO está logueado, privada si SÍ está logueado -->
+  <header class="app-header">
+    <app-public-header *ngIf="!usuarioIniciado"></app-public-header>
+    <app-private-header *ngIf="usuarioIniciado"></app-private-header>
+  </header>
+
+  <!-- Contenido principal con menú lateral -->
+  <div class="app-content">
+    <!-- Menú: mostrar menú público si NO está logueado, privado si SÍ está logueado -->
+    <aside class="app-menu">
+      <app-public-menu *ngIf="!usuarioIniciado"></app-public-menu>
+      <app-private-menu *ngIf="usuarioIniciado"></app-private-menu>
+    </aside>
+
+    <!-- Área de contenido donde se renderizan las páginas routed -->
+    <main class="app-main">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <!-- Pie de página -->
+  <footer class="app-footer">
+    <app-footer></app-footer>
+  </footer>
+</div>

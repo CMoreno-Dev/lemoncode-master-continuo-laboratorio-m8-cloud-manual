@@ -1,0 +1,22 @@
+<nav class="menu">
+  <ul class="menu-list">
+    <!-- Enlace a la página de inicio -->
+    <li>
+      <a
+        routerLink="/home"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Home
+      </a>
+    </li>
+    <!-- Enlace a la página de login -->
+    <li>
+      <a routerLink="/login" routerLinkActive="active"> Login </a>
+    </li>
+    <!-- Enlace a la página de información -->
+    <li>
+      <a routerLink="/about" routerLinkActive="active"> Acerca de </a>
+    </li>
+  </ul>
+</nav>

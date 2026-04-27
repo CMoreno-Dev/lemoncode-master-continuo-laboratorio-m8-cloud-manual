@@ -1,0 +1,26 @@
+.header-content {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #673ab7 0%, #512da8 100%);
+  color: white;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-img {
+  height: 50px;
+  width: 50px;
+  border-radius: 4px;
+}
+
+.app-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin: 0;
+  white-space: nowrap;
+}

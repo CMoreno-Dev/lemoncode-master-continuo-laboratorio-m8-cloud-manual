@@ -1,0 +1,69 @@
+<div class="gallery-container">
+  <!-- Sección 1: Imagen Seleccionada -->
+  <div class="selected-image-section">
+    <div class="image-wrapper">
+      <img
+        rotate
+        [rotacion]="rotacionImagenActual"
+        [paso]="10"
+        [escala]="escalaImagen"
+        [src]="imagenActual.src"
+        [alt]="imagenActual.title"
+        (rotacionCambiada)="alCambiarRotacion($event)"
+      />
+    </div>
+    <div class="image-info">
+      <h2>{{ imagenActual.title }}</h2>
+      <p>{{ indiceImagenActual + 1 }} / {{ imagenesPerro.length }}</p>
+    </div>
+  </div>
+
+  <!-- Sección 2: Listado de Imágenes (Thumbnails) -->
+  <div class="thumbnails-section">
+    <div class="thumbnails-controls">
+      <button
+        (click)="paginaMiniaturaAnterior()"
+        [disabled]="esPrimeraPaginaMiniatura()"
+      >
+        ← Anterior
+      </button>
+      <span class="page-info"
+        >{{ paginaMiniaturaActual + 1 }} /
+        {{
+          (imagenesPerro.length + miniaturasPorPagina - 1) / miniaturasPorPagina
+            | number: "1.0-0"
+        }}</span
+      >
+      <button (click)="siguientePaginaMiniatura()" [disabled]="esUltimaPaginaMiniatura()">
+        Siguiente →
+      </button>
+    </div>
+    <div class="thumbnails-list">
+      <img
+        *ngFor="
+          let imagen of imagenesPerro
+            | slice
+              : paginaMiniaturaActual * miniaturasPorPagina
+              : (paginaMiniaturaActual + 1) * miniaturasPorPagina;
+          let i = index
+        "
+        [src]="imagen.src"
+        [alt]="imagen.title"
+        [class.active]="(paginaMiniaturaActual * miniaturasPorPagina) + i === indiceImagenActual"
+        (click)="seleccionarImagen((paginaMiniaturaActual * miniaturasPorPagina) + i)"
+      />
+    </div>
+  </div>
+
+  <!-- Sección 3: Botonera -->
+  <div class="controls-section">
+    <button (click)="imagenAnterior()" [disabled]="esPrimeraImagen()">
+      Anterior
+    </button>
+    <button (click)="siguienteImagen()" [disabled]="esUltimaImagen()">Siguiente</button>
+    <button (click)="alejar()">Disminuir</button>
+    <button (click)="acercar()">Aumentar</button>
+    <button (click)="reproducir()" *ngIf="!estaReproduciendo">Play</button>
+    <button (click)="detener()" *ngIf="estaReproduciendo">Stop</button>
+  </div>
+</div>

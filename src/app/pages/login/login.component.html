@@ -1,0 +1,76 @@
+<div class="login-container">
+  <div class="login-card">
+    <!-- Título oculto mientras está cargando -->
+    <h1 *ngIf="!loading">Login</h1>
+    <!-- Formulario reactivo que se vincula a formularioLogin -->
+    <!-- Se oculta mientras está cargando (*ngIf="!loading") -->
+    <form *ngIf="!loading" [formGroup]="formularioLogin" (ngSubmit)="iniciarSesion()">
+      <!-- Campo de usuario/correo -->
+      <div class="form-group">
+        <label for="username">Correo:</label>
+        <input
+          id="username"
+          type="email"
+          formControlName="username"
+          placeholder="Ingresa tu correo (master@lemoncode.net)"
+          class="form-input"
+        />
+        <!-- Mostrar mensajes de error si el campo es inválido y ha sido tocado -->
+        <div
+          class="error-text"
+          *ngIf="
+            formularioLogin.get('username')?.invalid &&
+            formularioLogin.get('username')?.touched
+          "
+        >
+          <span *ngIf="formularioLogin.get('username')?.errors?.['required']"
+            >El correo es obligatorio</span
+          >
+          <span *ngIf="formularioLogin.get('username')?.errors?.['email']"
+            >Por favor ingresa un correo válido</span
+          >
+        </div>
+      </div>
+
+      <!-- Campo de contraseña -->
+      <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Ingresa tu contraseña (12345678)"
+          class="form-input"
+        />
+        <!-- Mostrar mensajes de error si el campo es inválido y ha sido tocado -->
+        <div
+          class="error-text"
+          *ngIf="
+            formularioLogin.get('password')?.invalid &&
+            formularioLogin.get('password')?.touched
+          "
+        >
+          <span *ngIf="formularioLogin.get('password')?.errors?.['required']"
+            >La contraseña es obligatoria</span
+          >
+          <span *ngIf="formularioLogin.get('password')?.errors?.['minlength']"
+            >La contraseña debe tener al menos 8 caracteres</span
+          >
+        </div>
+      </div>
+
+      <button type="submit" class="login-btn" [disabled]="formularioLogin.invalid">
+        Iniciar Sesión
+      </button>
+
+      <div *ngIf="errorLogin" class="error-message">
+        {{ errorLogin }}
+      </div>
+    </form>
+
+    <!-- Spinner de carga - visible solo mientras loading es true -->
+    <div *ngIf="loading" class="loading-container">
+      <img src="assets/spinner.gif" alt="Cargando..." class="loading-spinner" />
+    </div>
+  </div>
+</div>

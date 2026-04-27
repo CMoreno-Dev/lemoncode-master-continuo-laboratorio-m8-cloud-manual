@@ -1,0 +1,10 @@
+<div class="header-content">
+  <div class="header-logo">
+    <img src="assets/logo.svg" alt="Mini App Logo" class="logo-img" />
+    <h1 class="app-title">Mini App</h1>
+  </div>
+  <div class="header-user">
+    <span class="username">{{ servicioAuth.obtenerNombreUsuario() }}</span>
+    <button (click)="cerrarSesion()" class="logout-btn">Logout</button>
+  </div>
+</div>
