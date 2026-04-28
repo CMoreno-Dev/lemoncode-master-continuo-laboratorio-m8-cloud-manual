@@ -2,7 +2,7 @@
 
 Este repositorio contiene la solución del laboratorio del **Módulo 8 (Cloud - Manual)** del Master Front-End Continuo de Lemoncode.
 
-Base de este proyecto: **Entregable 4 de Angular** del Módulo 7.
+Base de este proyecto: **Entregable 4 de Angular** del Módulo 4.
 
 ## 👤 Información del Estudiante
 
